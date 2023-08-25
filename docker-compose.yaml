@@ -1,2 +1,11 @@
 services:
-  - mariadb
+  mariadb:
+    build: ./mariadb
+    volumes:
+      - ./mariadb/data:/var/lib/mysql
+    environment:
+      WORDPRESS_DB_NAME: wordpress
+      MARIADB_USER_NAME: mzridi
+      MARIADB_USER_PASSWORD: mzridi_password
+  ngniex:
+    build: ./ngnix
