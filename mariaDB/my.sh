@@ -10,4 +10,3 @@ mysql -u root -e "GRANT ALL PRIVILEGES ON $WORDPRESS_DB_NAME.* TO '$MARIADB_USER
 mysql -u root -e "FLUSH PRIVILEGES;"
 mysql -u root -e "exit"
 service mariadb stop
-mysqld

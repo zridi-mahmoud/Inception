@@ -1,4 +1,4 @@
-FROM debian
+FROM debian:12.1
 
 RUN apt-get update && apt-get upgrade -y
 
@@ -8,7 +8,6 @@ COPY ./my.sh /my.sh
 
 RUN chmod +x /my.sh
 
-# RUN /my.sh
+ENTRYPOINT ["/my.sh"]
 
-CMD ["/my.sh"]
-
+CMD ["mysqld"]
