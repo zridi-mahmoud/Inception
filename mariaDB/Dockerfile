@@ -8,6 +8,6 @@ COPY ./my.sh /my.sh
 
 RUN chmod +x /my.sh
 
-ENTRYPOINT ["/my.sh"]
+# ENTRYPOINT ["./my.sh"]
 
-CMD ["mysqld"]
+CMD ["mysqld_safe"]
