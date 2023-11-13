@@ -1,0 +1,23 @@
+    FROM debian:12.1
+
+    RUN apt-get update && apt-get upgrade -y
+
+    # steps to follow suposing the database is ready along with nginx
+    # install php, php-curl, php-mysql, php7.3-fpm and curl 
+    # create the /run/php directory to store the session files
+
+    RUN apt-get install -y vim && apt-get install -y curl
+
+    RUN apt-get install -y php8.2 php8.2-fpm php-mysql php-curl
+
+    COPY ./my.sh /tmp/my.sh
+    RUN chmod +x /tmp/my.sh
+
+    
+    # CMD [ "php-fpm7.3", "-F" ]
+    # ENTRYPOINT [ "/tmp/script.sh" ]
+    # infinte loop to keep the container running
+    CMD ["tail", "-f", "/dev/null"]
+
+
+    # FROM    debian:buster
