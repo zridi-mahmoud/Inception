@@ -13,11 +13,11 @@
     COPY ./my.sh /tmp/my.sh
     RUN chmod +x /tmp/my.sh
 
-    
+    EXPOSE 9000
     # CMD [ "php-fpm7.3", "-F" ]
-    # ENTRYPOINT [ "/tmp/script.sh" ]
-    # infinte loop to keep the container running
-    CMD ["tail", "-f", "/dev/null"]
+    ENTRYPOINT [ "/tmp/my.sh" ]
 
+    CMD ["php-fpm8.2", "-F"]
 
+    
     # FROM    debian:buster

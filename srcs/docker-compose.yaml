@@ -8,35 +8,33 @@ services:
       - .env
     networks:
       - inception
-  # nginx:
-  #   build: ./requirements/nginx
-  #   container_name: nginx
-  #   environment:
-  #     env_file: .env
-  #   volumes:
-  #     - data:/var/www/html
-  #   depends_on:
-  #     - wordpress
-  #   restart: on-failure
-  #   ports:
-  #     - "3306:3306"
-  #   networks:
-  #     - inception
-  # wordpress:
-    # build: ./requirements/wordpress
-    # container_name: wordpress
-    # image: wordpress:inception
-    # environment:
-    #   env_file: .env
-    # restart: always
-    # depends_on:
-    #   - mariadb
-    # ports:
-    #   - '9000:9000'
-    # volumes:
-    #   - data:/var/www/html/
-    # networks:
-    #   - inception
+  nginx:
+    container_name: nginx
+    build: ./requirements/nginx
+    env_file: .env
+    volumes:
+      - data:/var/www/html
+    depends_on:
+      - wordpress
+    restart: on-failure
+    ports:
+      - "3306:3306"
+    networks:
+      - inception
+  wordpress:
+    build: ./requirements/wordpress
+    container_name: wordpress
+    image: wordpress:inception
+    env_file: .env
+    restart: always
+    depends_on:
+      - mariadb
+    ports:
+      - '9000:9000'
+    volumes:
+      - data:/var/www/html/
+    networks:
+      - inception
 
 volumes:
   data:
