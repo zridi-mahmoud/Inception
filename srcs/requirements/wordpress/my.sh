@@ -24,9 +24,12 @@ sed -i 's/username_here/'$MARIADB_USER_NAME'/g' /var/www/html/wp-config.php
 # Set the Password
 sed -i 's/password_here/'$MARIADB_USER_PASSWORD'/g' /var/www/html/wp-config.php
 
+# set The Hostname of the That database
 sed -i 's/localhost/'$HOST'/g' /var/www/html/wp-config.php
 
 wp config set FORCE_SSL_ADMIN 'false' --allow-root
 
+# instal the wordpress
+wp core install --url=$DOMAIN_NAME --title="My Wordpress Site" --admin_user=$ADMIN_USER --admin_password=$ADMIN_PASSWORD --admin_email=$ADMIN_EMAIL --allow-root
 
 exec "$@"

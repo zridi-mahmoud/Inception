@@ -8,6 +8,8 @@ services:
       - .env
     networks:
       - inception
+    ports:
+      - "3306:3306"
   nginx:
     container_name: nginx
     build: ./requirements/nginx
@@ -18,7 +20,7 @@ services:
       - wordpress
     restart: on-failure
     ports:
-      - "3306:3306"
+      - "80:80"
     networks:
       - inception
   wordpress:
