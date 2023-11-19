@@ -1,23 +1,15 @@
 # base image
-FROM    debian:buster
+FROM    debian:12.2
 
-# install php and php-curl and php-mysql and php7.3-fpm and curl and sendmail
-RUN apt update && apt install -y php php-curl php-mysql\
-    && apt install -y php7.3-fpm \
-    && apt install -y curl \
-    && apt install -y sendmail
+# install php and php-curl and php-mysql and php8.2-fpm and curl and sendmail
+RUN apt update && apt install -y php8.2 php8.2-curl php8.2-mysql php8.2-fpm curl sendmail 
 
-# create the /run/php/ used for storing session data, temporary files, or other types of data that is generated and used by PHP while it's running
 RUN mkdir -p /run/php/
 
-# copy the script.sh into the container
 COPY ./my.sh /my.sh
 
-# change the permission of script.sh
 RUN chmod +x /my.sh
 
-# run the script.sh
 ENTRYPOINT [ "/my.sh" ]
 
-# PHP-FPM to run in the foreground, that is, to not fork into the background as a daemon. This makes it so that the process will run and output any logs to the console where it was started.
-CMD [ "php-fpm7.3", "-F" ]
+CMD [ "php-fpm8.2", "-F" ]
