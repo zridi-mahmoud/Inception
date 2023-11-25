@@ -20,7 +20,6 @@ services:
       - data:/var/www/html
     depends_on:
       - wordpress
-      - site
     restart: on-failure
     ports:
       - "443:443"
@@ -40,30 +39,18 @@ services:
       - data:/var/www/html/
     networks:
       - inception
-    site:
-      container_name: site
-      build: ./bonus/site
-      image: site:inception
-      env_file: .env
-      restart: on-failure
-      ports:
-        - '3000:3000'
-      volumes:
-        - data:/var/www
-      networks:
-        - inception
 
 volumes:
   data:
     driver: local
     driver_opts:
-      device : ${REPO_PATH}/srcs/data
+      device : ${REPO_PATH}/data
       type : none
       o: bind
   data_db:
     driver: local
     driver_opts:
-      device: ${REPO_PATH}/srcs/data_db
+      device: ${REPO_PATH}/data_db
       type: none
       o: bind
 

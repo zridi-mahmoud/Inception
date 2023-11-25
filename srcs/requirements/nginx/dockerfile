@@ -1,4 +1,4 @@
-FROM debian:12.2
+FROM debian:11
 
 RUN apt-get update && apt-get upgrade -y
 
@@ -10,6 +10,6 @@ RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
     -out /etc/ssl/certs/nginx-selfsigned.crt \
     -subj "/C=MA/ST=KH/L=KHOURIBGA/O=1337/OU=1337/CN=www.1337.ma"
 
-COPY ./config.conf /etc/nginx/conf.d/default.conf
+COPY ./tools/config.conf /etc/nginx/conf.d/default.conf
 
 CMD ["nginx", "-g", "daemon off;"]

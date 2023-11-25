@@ -3,3 +3,4 @@
 *.log
 .env
 rmciv.sh
+stop.sh
