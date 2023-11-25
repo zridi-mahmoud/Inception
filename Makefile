@@ -6,7 +6,7 @@ REPO_PATH = /home/mzridi
 all: up
 
 volumes:
-	mkdir -p $(REPO_PATH)/data $(REPO_PATH)/data_i
+	mkdir -p $(REPO_PATH)/data $(REPO_PATH)/data_db
 up: volumes
 	$(DOCKER_COMPOSE) up --build -d
 
