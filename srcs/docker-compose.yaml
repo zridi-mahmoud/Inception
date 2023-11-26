@@ -11,6 +11,7 @@ services:
       - inception
     ports:
       - "3306:3306"
+    restart: on-failure
   nginx:
     container_name: nginx
     build: ./requirements/nginx
@@ -30,7 +31,7 @@ services:
     container_name: wordpress
     image: wordpress:inception
     env_file: .env
-    restart: always
+    restart: on-failure
     depends_on:
       - mariadb
     ports:
